@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:22:49 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 20:43:56 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/24 23:04:13 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	fill_infos_heredoc(t_infos *infos, char **av, int ac)
 	{
 		free_all(infos);
 		unlink("tmp");
+		unlink(av[ac - 1]);
 		exit(1);
 	}
 	read_exec(infos->tmp, av, infos);

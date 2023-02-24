@@ -17,7 +17,7 @@ CC				= cc
 RM				= rm -f
 FLAGS			= -Wall -Wextra -Werror
 NAME			= Mandatory/pipex
-NAME_B		    = Bonus/pipex_b
+NAME_B		    = Bonus/pipex
 
 .PHONY: all clean bonus fclean re
 

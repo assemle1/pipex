@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:05:42 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 20:43:39 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/24 23:01:43 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	fill_infos(t_infos *infos, char **av, int ac)
 	{
 		free_all(infos);
 		close_all(infos->infile, infos->outfile, infos);
+		unlink(av[ac - 1]);
 		exit(1);
 	}
 }
