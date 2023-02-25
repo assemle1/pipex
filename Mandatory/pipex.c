@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:26:29 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/25 12:13:54 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 17:02:02 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	cmd1(t_infos *infos, char **env)
 		exit(1);
 	close_all(infos);
 	execve(infos->cmd1[0], infos->cmd1, env);
+	exit(1);
 }
 
 void	cmd2(t_infos	*infos, char	**env)
@@ -28,6 +29,7 @@ void	cmd2(t_infos	*infos, char	**env)
 		exit(1);
 	close_all(infos);
 	execve(infos->cmd2[0], infos->cmd2, env);
+	exit(1);
 }
 
 int	main(int ac, char **av, char **env)

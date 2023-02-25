@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:05:42 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/25 11:27:43 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 17:00:08 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	freealloc2(char **ptr)
 	int	i;
 
 	i = 0;
-	if (!ptr[i])
-		i++;
 	while (ptr[i])
 	{
-		free (ptr[i]);
+		free(ptr[i]);
 		i++;
 	}
 	free(ptr);

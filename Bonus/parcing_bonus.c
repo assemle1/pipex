@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:01:33 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 20:44:01 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 17:00:40 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*get_the_way(char *cmd, char **paths)
 		free(cmdcheck);
 		i++;
 	}
+	free(paths);
 	return (free(cmd), NULL);
 }
 
@@ -58,6 +59,8 @@ int	ifslash(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '/')
@@ -75,6 +78,8 @@ char	*get_cmd(char *cmd, char **paths)
 
 	i = 0;
 	j = 0;
+	if (!cmd)
+		return (freealloc2(paths), NULL);
 	if (!paths)
 		return (free(cmd), NULL);
 	if (!ifslash(cmd))
@@ -91,5 +96,5 @@ char	*get_cmd(char *cmd, char **paths)
 		fcmd = ft_substr(cmd, i, ft_strlen(cmd));
 		return (free(cmd), get_the_way(fcmd, paths));
 	}
-	return (NULL);
+	return (free(cmd), NULL);
 }

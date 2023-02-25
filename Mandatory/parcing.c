@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:01:33 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/18 19:51:46 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 13:03:21 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ char	*get_cmd(char *cmd, char **paths)
 
 	i = 0;
 	j = 0;
+	if (!cmd)
+		return (NULL);
 	if (!paths)
 		return (free(cmd), NULL);
 	if (!ifslash(cmd))

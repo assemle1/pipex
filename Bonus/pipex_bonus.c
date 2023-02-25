@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:26:29 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/25 12:14:27 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 17:02:31 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	cmd(t_infos *infos, int infile, int outfile, int i)
 		exit(1);
 	close_all(infile, outfile, infos);
 	execve(infos->cmds[i][0], infos->cmds[i], infos->env);
+	exit(1);
 }
 
 void	ft_pre_fd(int *pre_fd, t_infos *infos, int *i)
