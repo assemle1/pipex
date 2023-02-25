@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:26:29 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 20:44:05 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 12:14:27 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	cmd(t_infos *infos, int infile, int outfile, int i)
 {
-	dup2(infile, STDIN_FILENO);
-	dup2(outfile, STDOUT_FILENO);
+	if (dup2(infile, STDIN_FILENO) < 0 || dup2(outfile, STDOUT_FILENO) < 0)
+		exit(1);
 	close_all(infile, outfile, infos);
 	execve(infos->cmds[i][0], infos->cmds[i], infos->env);
 }
@@ -76,17 +76,18 @@ int	main(int ac, char **av, char **env)
 	infos.env = env;
 	if (!ft_strncmp(av[1], "here_doc", ft_strlen(av[1])))
 	{
+		if (ac != 6)
+			return (ft_putstr_fd("Syntaxe Error\n", 2), 0);
 		fill_infos_heredoc(&infos, av, ac);
 		unlink("tmp");
 		exit(0);
 	}
+	if (ac <= 5)
+		return (ft_putstr_fd("Syntaxe Error\n", 2), 0);
 	infos.infile = open(av[1], O_RDONLY);
 	infos.outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (infos.infile < 0 || infos.outfile < 0)
-		return (ft_putstr_fd("Cant Open The assigned files\n", 2), 0);
-	else
-	{
-		fill_infos(&infos, av, ac);
-		pipes(ac, &infos);
-	}
+		ft_putstr_fd("Cant Open The assigned files\n", 2);
+	fill_infos(&infos, av, ac);
+	pipes(ac, &infos);
 }

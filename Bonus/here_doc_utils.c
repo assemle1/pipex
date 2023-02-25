@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:48:15 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 20:43:52 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 11:13:32 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	errchecker_heredoc(t_infos *infos)
 		if (!infos->cmds[i])
 			return (ft_putstr_fd("Syntaxe Error\n", 2), 0);
 		if (!infos->cmds[i][0])
-			return (ft_putstr_fd("bash : command not found\n", 2), 0);
+			ft_putstr_fd("bash : command not found\n", 2);
 		i++;
 	}
 	return (1);

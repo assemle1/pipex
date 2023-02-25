@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:26:29 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 22:48:21 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 12:13:54 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	cmd1(t_infos *infos, char **env)
 {
-	dup2(infos->infile, STDIN_FILENO);
-	dup2(infos->fd[1], 1);
+	if (dup2(infos->infile, STDIN_FILENO) < 0
+		|| dup2(infos->fd[1], STDOUT_FILENO) < 0)
+		exit(1);
 	close_all(infos);
 	execve(infos->cmd1[0], infos->cmd1, env);
 }
 
 void	cmd2(t_infos	*infos, char	**env)
 {
-	dup2(infos->outfile, STDOUT_FILENO);
-	dup2(infos->fd[0], 0);
+	if (dup2(infos->outfile, STDOUT_FILENO) < 0
+		|| dup2(infos->fd[0], STDIN_FILENO) < 0)
+		exit(1);
 	close_all(infos);
 	execve(infos->cmd2[0], infos->cmd2, env);
 }
@@ -41,7 +43,7 @@ int	main(int ac, char **av, char **env)
 	infos.infile = open(av[1], O_RDONLY);
 	infos.outfile = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (infos.infile < 0 || infos.outfile < 0)
-		return (ft_putstr_fd("Cant Open The assigned files\n", 2), 0);
+		ft_putstr_fd("Cant Open The assigned files\n", 2);
 	fill_infos(&infos, av, env);
 	pid1 = fork();
 	pid2 = fork();

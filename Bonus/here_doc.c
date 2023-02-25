@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:22:49 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 23:04:13 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 12:15:15 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	read_exec(int tmp, char	**av, t_infos *infos)
 	read = ft_strdup("");
 	while (1)
 	{
+		free(read);
+		write(1, "pipe heredoc> ", 15);
+		read = get_next_line(0);
 		if (!ft_strcmp(read, join(ft_strdup(av[2]), "\n")))
 		{
 			free(read);
 			break ;
 		}
-		free(read);
-		write(1, "pipe heredoc> ", 15);
-		read = get_next_line(0);
 		write(tmp, read, ft_strlen(read));
 	}
 	exec_heredoc(tmp, infos);
@@ -73,18 +73,14 @@ void	fill(t_infos *infos, char **av)
 void	fill_infos_heredoc(t_infos *infos, char **av, int ac)
 {
 	fill(infos, av);
-	infos->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	infos->tmp = open("tmp", O_WRONLY | O_CREAT | O_APPEND, 0777);
+	infos->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+	infos->tmp = open("tmp", O_WRONLY | O_CREAT, 0777);
 	if (infos->tmp < 0 || infos->outfile < 0)
-	{
 		ft_putstr_fd("Cant Open The assigned files\n", 2);
-		exit(1);
-	}
 	if (!errchecker_heredoc(infos))
 	{
 		free_all(infos);
 		unlink("tmp");
-		unlink(av[ac - 1]);
 		exit(1);
 	}
 	read_exec(infos->tmp, av, infos);

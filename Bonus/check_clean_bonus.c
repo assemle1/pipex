@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:05:42 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 23:01:43 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 11:27:43 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	errchecker(t_infos *infos, int ac)
 		return (ft_putstr_fd("bash : no path in env\n", 2), 0);
 	while (i < ac - 3)
 	{
-		if (!infos->cmds[i])
-			return (ft_putstr_fd("Syntaxe Error\n", 2), 0);
 		if (!infos->cmds[i][0])
-			return (ft_putstr_fd("bash : command not found\n", 2), 0);
+			ft_putstr_fd("bash : command not found\n", 2);
 			i++;
 	}
 	return (1);
@@ -87,7 +85,6 @@ void	fill_infos(t_infos *infos, char **av, int ac)
 	{
 		free_all(infos);
 		close_all(infos->infile, infos->outfile, infos);
-		unlink(av[ac - 1]);
 		exit(1);
 	}
 }

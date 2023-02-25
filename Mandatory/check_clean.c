@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:05:42 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/24 22:59:54 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 11:14:47 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	errchecker(t_infos *infos)
 	if (!infos->cmd1 || !infos->cmd2)
 		return (ft_putstr_fd("Syntaxe Error\n", 2), 0);
 	if (!infos->cmd1[0] || !infos->cmd2[0])
-		return (ft_putstr_fd("bash : command not found\n", 2), 0);
+		ft_putstr_fd("bash : command not found\n", 2);
 	return (1);
 }
 
@@ -66,7 +66,6 @@ void	fill_infos(t_infos *infos, char **av, char **env)
 	{
 		free_all(infos);
 		close_all(infos);
-		unlink(av[4]);
 		exit(1);
 	}
 }
