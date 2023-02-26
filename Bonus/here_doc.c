@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:22:49 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/25 12:15:15 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/26 16:02:00 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	read_exec(int tmp, char	**av, t_infos *infos)
 		free(read);
 		write(1, "pipe heredoc> ", 15);
 		read = get_next_line(0);
+		if (!read)
+			break ;
 		if (!ft_strcmp(read, join(ft_strdup(av[2]), "\n")))
 		{
 			free(read);

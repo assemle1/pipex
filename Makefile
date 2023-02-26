@@ -1,6 +1,14 @@
-
-
-
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/25 17:27:56 by astalha           #+#    #+#              #
+#    Updated: 2023/02/25 17:27:57 by astalha          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 SRCS			=	 Mandatory/libft/ft_substr.c Mandatory/libft/ft_strlen.c  Mandatory/libft/ft_strncmp.c  Mandatory/libft/ft_putstr_fd.c  Mandatory/libft/ft_strdup.c\
 					Mandatory/ft_printf/ft_printf.c  Mandatory/ft_printf/ft_put_u.c  Mandatory/ft_printf/ft_putadd.c  Mandatory/ft_printf/ft_putnbr.c  Mandatory/ft_printf/ft_putstr.c \

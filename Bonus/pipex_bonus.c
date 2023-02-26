@@ -6,7 +6,7 @@
 /*   By: astalha <astalha@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:26:29 by astalha           #+#    #+#             */
-/*   Updated: 2023/02/25 17:02:31 by astalha          ###   ########.fr       */
+/*   Updated: 2023/02/25 19:10:13 by astalha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int ac, char **av, char **env)
 		unlink("tmp");
 		exit(0);
 	}
-	if (ac <= 5)
+	if (ac < 5)
 		return (ft_putstr_fd("Syntaxe Error\n", 2), 0);
 	infos.infile = open(av[1], O_RDONLY);
 	infos.outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
